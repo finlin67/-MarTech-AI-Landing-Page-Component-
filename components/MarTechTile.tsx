@@ -1,9 +1,12 @@
 
+'use client';
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// FIX: Imported the `Variants` type from framer-motion to correctly type animation variants.
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Rocket, Users, Mail, TrendingUp, TrendingDown, Wallet, AreaChart, Blocks } from 'lucide-react';
 
-const cardVariants = {
+// FIX: Explicitly typed cardVariants with `Variants` to resolve a TypeScript error where the `ease` property was inferred as a generic `string` instead of the required `Easing` type.
+const cardVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
         opacity: 1,
@@ -16,7 +19,8 @@ const cardVariants = {
     }),
 };
 
-const numberVariant = {
+// FIX: Explicitly typed numberVariant with `Variants` for consistency and type safety.
+const numberVariant: Variants = {
   initial: { opacity: 0, y: -10 },
   animate: { opacity: 1, y: 0 },
   exit: { opacity: 0, y: 10 },
@@ -52,7 +56,7 @@ export default function MarTechTile() {
         <div className="w-full h-full flex justify-center items-center">
             <div className="relative aspect-square w-full max-w-[500px] lg:h-[500px] lg:w-[500px] lg:max-w-none bg-[#16202e] rounded-2xl border border-[#223149] overflow-hidden shadow-2xl">
                 {/* Toggle Switch */}
-                <div className="absolute top-4 right-4 z-30 flex items-center gap-2 text-xs font-bold">
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 text-xs font-bold">
                     <span className={`transition-colors ${!isOptimized ? 'text-white' : 'text-gray-500'}`}>Before</span>
                     <div
                         className={`w-10 h-5 flex items-center rounded-full p-1 cursor-pointer transition-colors ${isOptimized ? 'bg-primary' : 'bg-gray-600'}`}
